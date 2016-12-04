@@ -11,15 +11,15 @@ echo "LETS BEGIN!"
 sleep 2.5
 
 
-apt-get update
+sudo apt-get update
 sleep 1.5
-apt-get upgrade
+sudo apt-get upgrade
 sleep 1.5
-apt-get install $APPLICATIONS
+sudo apt-get install $APPLICATIONS
 sleep 1.5
-service apache2 start
+sudo service apache2 start
 sleep 1.5
-service apache2 stop
+sudo service apache2 stop
 sleep 1.5
 sudo cp /home/pi/Broken-Project/index.html /var/www/html/index.html
 
