@@ -7,8 +7,9 @@ echo ""
 
 APPLICATIONS="apache2 tightvncserver avahi-daemon aircrack-ng"
 
-echo "LETS BEGIN!"
-sleep 2.5
+echo "\033[33;35mLETS BEGIN!"
+echo "Wait 5 sec!"
+sleep 5
 
 
 sudo apt-get update
@@ -21,7 +22,7 @@ sudo service apache2 start
 sleep 1.5
 sudo service apache2 stop
 sleep 1.5
-sudo cp /home/pi/Broken-Project/index.html /var/www/html/index.html
+sudo cp ~/Broken-Project/index.html /var/www/html/index.html
 
 echo "LETS REBOOT TO BE SURE THAT EVERYTHING IS GOOD INSTALLED!"
 echo "Just type < sudo reboot now >"
