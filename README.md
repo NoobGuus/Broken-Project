@@ -25,8 +25,8 @@ of course you still have to deploy 'Broken' physically.</p1>
 
 install Acces Point >>> "sudo sh ~/Broken-Project/ap-addon.sh"
 
-!!!--- You can also use this to change the interface.
-if you typed wlan0 and the wifi card you use is wlan1 you can use it to change ALL files with the wrong interface ---!!!
+<stong>!!!--- You can also use this to change the interface.
+if you typed wlan0 and the wifi card you use is wlan1 you can use it to change ALL files with the wrong interface ---!!!</stong>
 
 start Acces Point >>> "sudo sh ~/Broken-Project/ap-start.sh"
 
