@@ -13,7 +13,7 @@ sudo apt-get install iptables -y
 sudo apt-get install zip unzip -y
 sudo apt-get update
 #2. Configure DHCP----------------------------------------------
-x=startup.file
+x=yum.yum
 touch $x
 sudo rm -rf /etc/default/udhcpd
 sudo mkdir /etc/default
