@@ -1,3 +1,4 @@
+sudo -sH
 #1. Install the necessary software------------------------------
 sudo apt-get update
 sudo apt-get install hostapd udhcpd -y
