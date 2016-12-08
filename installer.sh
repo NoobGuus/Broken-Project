@@ -5,7 +5,7 @@ echo ""
 echo "=========================================================================="
 echo ""
 
-APPLICATIONS="apache2 tightvncserver avahi-daemon aircrack-ng"
+APPLICATIONS="apache2 tightvncserver avahi-daemon aircrack-ng avahi-utils"
 
 echo "\033[33;35mLETS BEGIN!"
 echo "Wait 5 sec!"
@@ -24,5 +24,11 @@ sudo service apache2 stop
 sleep 1.5
 sudo cp ~/Broken-Project/index.html /var/www/html/index.html
 
-echo "LETS REBOOT TO BE SURE THAT EVERYTHING IS GOOD INSTALLED!"
-echo "Just type < sudo reboot now >"
+echo "\033[33;31m _               _                                    _           _   
+| |__  _ __ ___ | | _____ _ __        _ __  _ __ ___ (_) ___  ___| |_ 
+| '_ \| '__/ _ \| |/ / _ \ '_ \ _____| '_ \| '__/ _ \| |/ _ \/ __| __|
+| |_) | | | (_) |   <  __/ | | |_____| |_) | | | (_) | |  __/ (__| |_ 
+|_.__/|_|  \___/|_|\_\___|_| |_|     | .__/|_|  \___// |\___|\___|\__|
+                                     |_|           |__/            "
+echo "======================================================================"
+echo "\033[33;36mThanks, everything is done!\033[33;35m"
