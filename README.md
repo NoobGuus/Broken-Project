@@ -1,8 +1,30 @@
-{\rtf1\ansi\ansicpg1252\cocoartf1504
-{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
-{\colortbl;\red255\green255\blue255;}
-{\*\expandedcolortbl;\csgray\c100000;}
-\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+Still devoloping,
 
-\f0\fs24 \cf0 DEVELOPING PROJECT}
+If you have any ideas, tell!
+
+FIRST RUN installer.sh
+
+This tool is made to be plugged in physically.
+After you plugged it on to ethernet and power, Broken makes a domain name to make it easier to acces over the internet that you are on
+so to ssh into the pi you can just enter "pi@broken.local"
+if you don't have acces to the network you can use the ap-addon, this will make an acces point so you don't have to get in to the network yourself.
+of course you still have to deploy 'Broken' physically.
+
+==============================ACCES POINT ADDON===================================
+
+
+if you want the Acces Point addon just run ap-addon.sh
+
+install Acces Point >>> "sudo sh ~/Broken-Project/ap-addon.sh"
+!!!--- You can also use this to change the interface.
+if you typed wlan0 and the wifi card you use is wlan1 you can use it to change ALL files with the wrong interface ---!!!
+
+start Acces Point >>> "sudo sh ~/Broken-Project/ap-start.sh"
+stop Acces Point >>> "sudo sh ~/Broken-Project/ap-stop.sh"
+
+
+if you want to have for example the acces point running from start just add a line with the line "sudo sh ~/Broken-Project/ap-start.sh" to the file /etc/rc.local
+
+
+
+

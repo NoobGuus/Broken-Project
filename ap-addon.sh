@@ -1,4 +1,11 @@
-sudo -sH
+#echo "TYPE EXIT"
+#sudo -sH
+
+echo "Hi, on what interface do you want to run 'Broken'?"
+echo "USE WLAN. so for example wlan or wlan1"
+read WLAN
+
+
 #1. Install the necessary software------------------------------
 sudo apt-get update
 sudo apt-get install hostapd udhcpd -y
@@ -6,14 +13,14 @@ sudo apt-get install iptables -y
 sudo apt-get install zip unzip -y
 sudo apt-get update
 #2. Configure DHCP----------------------------------------------
-x=tem.tem
+x=startup.file
 touch $x
 sudo rm -rf /etc/default/udhcpd
 sudo mkdir /etc/default
 sudo touch /etc/default/udhcpd
 echo "start 192.168.42.2 " >>   $x
 echo "end 192.168.42.20" >> $x
-echo "interface wlan0" >> $x
+echo "interface $WLAN" >> $x
 echo "remaining yes" >> $x
 echo "opt dns 8.8.8.8 4.2.2.2" >> $x
 echo "opt subnet 255.255.255.0" >> $x
@@ -29,7 +36,7 @@ echo "# -f    run in foreground" >> $x
 echo "DHCPD_OPTS=\"-S\"" >> $x
 sudo mv $x  /etc/default/udhcpd
 	#give the Pi a static IP address 
-sudo ifconfig wlan0 192.168.42.1
+sudo ifconfig $WLAN 192.168.42.1
 #------------SETUP Station Interface for Rt5370-------------------------------------
 touch $x
 sudo cp  /etc/network/interfaces /etc/network/interfaces.bk
@@ -40,8 +47,8 @@ echo "" >> $x
 echo "auto eth0" >> $x
 echo "iface eth0 inet dhcp" >> $x
 echo "" >> $x
-echo "allow-hotplug wlan0" >> $x
-echo "iface wlan0 inet dhcp" >> $x
+echo "allow-hotplug $WLAN" >> $x
+echo "iface $WLAN inet dhcp" >> $x
 echo "    wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf" >> $x
 echo "    wireless-power off" >> $x
 echo "" >> $x
@@ -60,7 +67,7 @@ echo "" >> $x
 echo "auto eth0" >> $x
 echo "iface eth0 inet dhcp" >> $x
 echo "" >> $x
-echo "iface wlan0 inet static" >> $x
+echo "iface $WLAN inet static" >> $x
 echo "    address 192.168.42.1" >> $x
 echo "    netmask 255.255.255.0" >> $x
 echo "    wireless-power off" >> $x
@@ -86,7 +93,7 @@ sudo mv $x /etc/wpa_supplicant/wpa_supplicant.conf
 
 #3. Configure HostAPD------------------------------------------------
 touch $x
-echo "interface=wlan0" >> $x
+echo "interface=$WLAN" >> $x
 echo "driver=nl80211" >> $x
 echo "ssid=Broken" >> $x
 echo "hw_mode=g" >> $x
@@ -109,8 +116,8 @@ touch $x
 sudo sh -c "echo 1 >> /proc/sys/net/ipv4/ip_forward"
 sudo echo "net.ipv4.ip_forward=1" >> /etc/sysctl.conf
 sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
-sudo iptables -A FORWARD -i eth0 -o wlan0 -m state --state RELATED,ESTABLISHED -j ACCEPT
-sudo iptables -A FORWARD -i wlan0 -o eth0 -j ACCEPT
+sudo iptables -A FORWARD -i eth0 -o $WLAN -m state --state RELATED,ESTABLISHED -j ACCEPT
+sudo iptables -A FORWARD -i $WLAN -o eth0 -j ACCEPT
 sudo sh -c "iptables-save >> /etc/iptables.ipv4.nat"
 #------------------------------5. Fire it up! R----------------------------------------
 sudo service hostapd start
@@ -124,3 +131,46 @@ sudo service dnsmasq start
 sudo update-rc.d dnsmasq enable
 sudo apt-get install udhcpc -y
 sudo cp ap.sh /usr/bin/ap
+#--------------------------Make the start and stop files!----------------------
+start=ap-start.sh
+
+touch $start
+
+echo "sudo /etc/init.d/hostapd stop" >> $start
+echo "sudo /etc/init.d/udhcpd stop" >> $start
+echo "sudo ifdown $WLAN" >> $start
+echo "sudo ifconfig $WLAN down" >> $start
+echo "sudo rm -rf /etc/network/interfaces" >> $start
+echo "sudo cp /etc/network/interfaces.ap /etc/network/interfaces" >> $start
+echo "sudo ifconfig $WLAN up" >> $start
+echo "sudo ifup $WLAN" >> $start
+echo "sudo /etc/init.d/hostapd restart" >> $start
+echo "sudo /etc/init.d/udhcpd restart" >> $start
+echo "sudo service hostapd status" >> $start
+echo "echo " >> $start
+echo "echo ===============================================" >> $start
+echo "echo Started the Acces Point!" >> $start
+echo "echo ===============================================" >> $start
+
+sudo mv  $start ~/Broken-Project/
+
+stop=ap-stop.sh
+
+touch $stop
+
+echo "sudo /etc/init.d/hostapd stop" >> $stop
+echo "sudo /etc/init.d/udhcpd stop" >> $stop
+echo "echo " >> $stop
+echo "echo ===============================================" >> $stop
+echo "echo Stopped the Acces Point!" >> $stop
+echo "echo ===============================================" >> $stop
+sudo mv  $stop ~/Broken-Project/
+
+#--------------------------LOGO----------------------
+echo "==================================================="
+echo " ____            _                      _    ____  
+| __ ) _ __ ___ | | _____ _ __         / \  |  _ \ 
+|  _ \| '__/ _ \| |/ / _ \ '_ \ _____ / _ \ | |_) |
+| |_) | | | (_) |   <  __/ | | |_____/ ___ \|  __/ 
+|____/|_|  \___/|_|\_\___|_| |_|    /_/   \_\_| "
+echo "==================================================="
