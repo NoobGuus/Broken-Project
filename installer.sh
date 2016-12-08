@@ -22,7 +22,7 @@ sudo service apache2 start
 sleep 1.5
 sudo service apache2 stop
 sleep 1.5
-sudo cp ~/Broken-Project/index.html /var/www/html/index.html
+sudo cp ~/home/pi/Broken-Project/index.html /var/www/html/index.html
 
 echo "\033[33;31m _               _                                    _           _   
 | |__  _ __ ___ | | _____ _ __        _ __  _ __ ___ (_) ___  ___| |_ 

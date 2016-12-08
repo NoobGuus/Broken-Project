@@ -1,6 +1,3 @@
-#echo "TYPE EXIT"
-#sudo -sH
-
 echo "Hi, on what interface do you want to run 'Broken'?"
 echo "USE WLAN. so for example wlan or wlan1"
 read WLAN
@@ -152,7 +149,6 @@ echo "echo ===============================================" >> $start
 echo "echo Started the Acces Point!" >> $start
 echo "echo ===============================================" >> $start
 
-sudo mv  $start ~/Broken-Project/
 
 stop=ap-stop.sh
 
@@ -164,7 +160,6 @@ echo "echo " >> $stop
 echo "echo ===============================================" >> $stop
 echo "echo Stopped the Acces Point!" >> $stop
 echo "echo ===============================================" >> $stop
-sudo mv  $stop ~/Broken-Project/
 
 #--------------------------LOGO----------------------
 echo "==================================================="
