@@ -1,5 +1,5 @@
 echo "Hi, on what interface do you want to run 'Broken'?"
-echo "USE WLAN. so for example wlan or wlan1"
+echo "USE WLAN. so for example wlan0 or wlan1"
 read WLAN
 
 
@@ -116,18 +116,14 @@ sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
 sudo iptables -A FORWARD -i eth0 -o $WLAN -m state --state RELATED,ESTABLISHED -j ACCEPT
 sudo iptables -A FORWARD -i $WLAN -o eth0 -j ACCEPT
 sudo sh -c "iptables-save >> /etc/iptables.ipv4.nat"
+
+sudo rm yum.yum
 #------------------------------5. Fire it up! R----------------------------------------
 sudo service hostapd start
 sudo service udhcpd start
 #-----------------------------6.get the hotspot to start on boot----------------------
 #sudo update-rc.d hostapd enable
 #sudo update-rc.d udhcpd enable
-#------------------------Create wifiConnect.py------------------------------------
-sudo apt-get install dnsmasq -y
-sudo service dnsmasq start
-sudo update-rc.d dnsmasq enable
-sudo apt-get install udhcpc -y
-sudo cp ap.sh /usr/bin/ap
 #--------------------------Make the start and stop files!----------------------
 start=ap-start.sh
 
@@ -161,6 +157,11 @@ echo "echo ===============================================" >> $stop
 echo "echo Stopped the Acces Point!" >> $stop
 echo "echo ===============================================" >> $stop
 
+#------------------------Create wifiConnect.py------------------------------------
+sudo apt-get install dnsmasq -y
+sudo service dnsmasq start
+sudo update-rc.d dnsmasq enable
+sudo apt-get install udhcpc -y
 #--------------------------LOGO----------------------
 echo "==================================================="
 echo " ____            _                      _    ____  
