@@ -1,3 +1,4 @@
+ifconfig
 echo "Hi, on what interface do you want to run 'Broken'?"
 echo "USE WLAN. so for example wlan0 or wlan1"
 read WLAN

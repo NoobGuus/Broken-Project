@@ -35,17 +35,3 @@ echo "\033[33;31m _               _                                    _        
 echo "======================================================================"
 echo "\033[33;36mThanks, everything is done!\033[33;35m"
 
-echo "SYSTEM IS GOING DOWN FOR A REBOOT IN"
-echo ""
-echo "5"
-sleep 1
-echo "4"
-sleep 1
-echo "3"
-sleep 1
-echo "2"
-sleep 1
-echo "1"
-sleep 1
-
-sudo reboot now
