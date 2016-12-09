@@ -12,6 +12,9 @@ echo "service apache2 start" >> $x
 echo "#Start acces point addon (Doesn't matter if you don't have the addon installed. It just leaves an error.)" >> $x
 echo "sh ~/Broken-Project/ap-start.sh" >> $x
 
+echo "#Start vncserver" >> $x
+echo "#sudo tightvncserver" >> $x
+
 sudo mv $x /etc/rc.local
 
 exit 0

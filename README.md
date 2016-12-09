@@ -16,6 +16,8 @@ if you don't have acces to the network you can use the ap-addon, this will make 
 
 of course you still have to deploy 'Broken' physically.</p1>
 
+<p2>Broken also installs tightvnc. Run tightvncserver to add the password and unhash '#sudo tightvncserver' in the file /etc/rc.local to run it from boot.</p2>
+
 =======================================================================
 
 <h3>ACCES POINT ADDON</h3>
