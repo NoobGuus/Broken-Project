@@ -21,7 +21,7 @@ sleep 5
 
 sudo apt-get update
 sudo apt-get upgrade
-sudo apt-get install $APPLICATIONS
+sudo apt-get install $APPLICATIONS -y
 sudo service apache2 start
 sudo service apache2 stop
 sudo cp ~/home/pi/Broken-Project/index.html /var/www/html/index.html
