@@ -17,4 +17,6 @@ echo "#sudo tightvncserver" >> $x
 
 sudo mv $x /etc/rc.local
 
+
+
 exit 0

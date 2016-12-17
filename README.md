@@ -1,8 +1,8 @@
-<h1>B R O K E N</h1>
+<h1>Acces Point</h1>
 
 <p1>Still devoloping,
 
-If you have any ideas, tell!
+<h3>If you have any ideas, let me know at support@broken-project.xyz</h3>
 
 FIRST RUN installer.sh
 
